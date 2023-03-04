@@ -1,10 +1,18 @@
-import React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Dropbox from './Dropbox/Dropbox';
 
-function App() {
+const App = () => {
+
   return (
-    <div className="App">
-      <p>Welcome!</p>
-    </div>
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Box sx={{ maxWidth: '600px', width: '100%' }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Upload image of any food item
+        </Typography>
+        <Dropbox />
+      </Box>
+    </Box>
   );
 }
 
