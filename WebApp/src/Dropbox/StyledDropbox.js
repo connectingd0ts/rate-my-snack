@@ -14,6 +14,7 @@ const StyledDropbox = styled('div')(({ theme }) => ({
     },
     '&:hover': {
         cursor: 'pointer',
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
     },
 }));
 

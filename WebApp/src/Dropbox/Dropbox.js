@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import StyledDropbox from './StyledDropbox';
+import ImageInput from './ImageInput';
+import { Box } from '@mui/material';
 
 const Dropbox = () => {
     const [image, setImage] = useState(null);
@@ -43,34 +44,30 @@ const Dropbox = () => {
     };
 
     return (
-        <StyledDropbox onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}>
-            {image ?
-                <img src={image} alt="uploaded" style={{ maxWidth: '100%', maxHeight: '100%' }} />
-                : (
-                    <>
-                        {dragActive ?
-                            <Typography variant="body1">Drop it here</Typography>
-                            : (
-                                <>
-                                    <Typography variant="body1">Drag and drop an image here or</Typography>
-                                    <input
-                                        accept="image/*"
-                                        id="contained-button-file"
-                                        multiple
-                                        type="file"
-                                        onChange={handleImageChange}
-                                        style={{ display: 'none' }}
-                                    />
-                                    <label htmlFor="contained-button-file">
-                                        <Button variant="contained" component="span">
-                                            Upload
-                                        </Button>
-                                    </label>
-                                </>
-                            )}
-                    </>
-                )}
-        </StyledDropbox>
+        <>
+            <StyledDropbox onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}>
+                {image ?
+                    <img src={image} alt="uploaded" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+                    : (
+                        <>
+                            {dragActive ?
+                                <Typography variant="body1">Drop it here</Typography>
+                                : (
+                                    <>
+                                        <Typography variant="body1">Drag and drop an image here or</Typography>
+                                        <ImageInput buttonLabel="Upload" onImageChange={handleImageChange} />
+                                    </>
+                                )}
+                        </>
+                    )}
+            </StyledDropbox>
+            { image && (
+                <Box sx={{display: 'flex', width: '100%', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '30px'}}>
+                    <ImageInput buttonLabel="Upload Another Image" onImageChange={handleImageChange} />
+                    <Typography variant="body1">Or drag and drop another image</Typography>
+                </Box>
+            )}
+        </>
     );
 };
 
