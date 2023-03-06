@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import StyledDropbox from './StyledDropbox';
 import ImageInput from './ImageInput';
-import { Box } from '@mui/material';
+import Button from '@mui/material/Button';
+import HorizontalRow from './HorizontalRow';
+import Send from '@mui/icons-material/Send';
 
 const Dropbox = () => {
     const [image, setImage] = useState(null);
@@ -61,12 +63,16 @@ const Dropbox = () => {
                         </>
                     )}
             </StyledDropbox>
-            { image && (
-                <Box sx={{display: 'flex', width: '100%', justifyContent: 'space-evenly', alignItems: 'center', marginTop: '30px'}}>
+            {image && (
+                <HorizontalRow>
                     <ImageInput buttonLabel="Upload Another Image" onImageChange={handleImageChange} />
                     <Typography variant="body1">Or drag and drop another image</Typography>
-                </Box>
+                </HorizontalRow>
             )}
+            <Button variant="contained" color="primary" disabled={!image}>
+                Submit &nbsp;
+                <Send />
+            </Button>
         </>
     );
 };

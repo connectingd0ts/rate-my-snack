@@ -8,12 +8,12 @@ const StyledDropbox = styled('div')(({ theme }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
+    marginBottom: theme.spacing(2),
     height: '300px',
     '& > *': {
         margin: theme.spacing(1),
     },
     '&:hover': {
-        cursor: 'pointer',
         backgroundColor: 'rgba(0, 0, 0, 0.05)',
     },
 }));
