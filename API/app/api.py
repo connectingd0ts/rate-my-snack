@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 @app.post("/rate-image", tags=["Evaluate"])
-async def rate_food_item(file: UploadFile = File(...)):
+async def rate_food_item(file: UploadFile):
     image_bytes = await file.read()
     image = Image.open(BytesIO(image_bytes))
     width, height = image.size
