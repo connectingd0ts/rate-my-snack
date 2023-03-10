@@ -3,7 +3,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib.image as img
 import pandas as pd
-from fuzzywuzzy import process, fuzz
+from fuzzywuzzy import process
 from tensorflow.keras.applications.inception_v3 import preprocess_input
 from tensorflow.keras.preprocessing import image
 
@@ -27,7 +27,7 @@ food_list=['apple_pie', 'baby_back_ribs', 'baklava', 'beef_carpaccio', 'beef_tar
             'spring_rolls', 'steak', 'strawberry_shortcake', 'sushi', 'tacos', 'takoyaki', 'tiramisu', 
             'tuna_tartare', 'waffles']
 
-def predict_class(model, img,show=True):
+def predict_class(model, img, show=True):
     img = image.load_img(img, target_size=(299, 299))
     img = image.img_to_array(img)                    
     img = np.expand_dims(img, axis=0)         
@@ -39,14 +39,12 @@ def predict_class(model, img,show=True):
     pred_value = food_list[index]
     return pred_value
 
-
-
 def calories_calculator(foodname):
     calories_data= pd.read_csv('inputs\Calories Data\Food and Calories data.csv')
     calories_data['Calories'] = calories_data['Calories'].replace(r'[^0-9]+', '', regex=True)
     unique_brand = calories_data['Food'].unique().tolist()
     for matchrow,score in process.extract(foodname, unique_brand, limit=1):
-        if score>90:
+        if score > 90:
             return calories_data.loc[calories_data['Food'] == matchrow, 'Calories'].iloc[0]
         else:
             return None
