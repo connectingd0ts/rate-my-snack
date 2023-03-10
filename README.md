@@ -4,6 +4,12 @@
 Make sure you have python installed.\
 If not, install the latest version from https://www.python.org/downloads/
 
+The prediction model could not be uploaded to Github due to its size.\
+Download the model from https://drive.google.com/drive/folders/1gIjfZoeA7cMriz2v_L2HCbqoAS5utsnN \
+Create a folder named `model` inside `API` and paste it there.
+
+<b>Note:</b> You will need admin rights to install python and tensorflow on your machine.
+
 ### Steps:
 Run the following commands in command prompt:
 
@@ -16,9 +22,15 @@ env\Scripts\activate.bat
 (env) pip install -r requirements.txt
 (env) python main.py
 ```
+
+In case you get an error while installing tensorflow, try the following:\
+Install conda from https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html
 ```sh
 ## create conda environment
 conda create --name mlenv python==3.9
+conda activate mlenv
+pip install -r requirements.txt
+python main.py
 ```
 
 Navigate to http://localhost:8080/docs
