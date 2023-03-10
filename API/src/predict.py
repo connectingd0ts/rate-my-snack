@@ -42,7 +42,7 @@ def predict_class(model, img,show=True):
 
 
 def calories_calculator(foodname):
-    calories_data= pd.read_csv('API\inputs\Calories Data\Food and Calories data.csv')
+    calories_data= pd.read_csv('inputs\Calories Data\Food and Calories data.csv')
     calories_data['Calories'] = calories_data['Calories'].replace(r'[^0-9]+', '', regex=True)
     unique_brand = calories_data['Food'].unique().tolist()
     for matchrow,score in process.extract(foodname, unique_brand, limit=1):

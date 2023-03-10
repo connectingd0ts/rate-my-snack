@@ -30,7 +30,7 @@ app.add_middleware(
 )
 
 K.clear_session()
-model_best = load_model(glob.glob('API/model/*.hdf5')[0],compile = False)
+model_best = load_model(glob.glob('model/*.hdf5')[0],compile = False)
 print(model_best)
 
 # @app.post("/rate-image", tags=["Evaluate"])
