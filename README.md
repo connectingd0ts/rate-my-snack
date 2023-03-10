@@ -51,5 +51,5 @@ yarn install
 yarn start
 ```
 
-Navigate to http://localhost:3000
+Navigate to http://localhost:3000 \
 Use the username `johndoe` and password `123` to login.
