@@ -16,6 +16,10 @@ env\Scripts\activate.bat
 (env) pip install -r requirements.txt
 (env) python main.py
 ```
+```sh
+## create conda environment
+conda create --name mlenv python==3.9
+```
 
 Navigate to http://localhost:8080/docs
 

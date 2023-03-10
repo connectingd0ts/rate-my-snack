@@ -1,5 +1,16 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+import glob,os
+from src.predict import predict_class,calories_calculator
+import tensorflow as tf
+import pandas as pd
+import re
+import warnings
+warnings.filterwarnings("ignore")
+
+import tensorflow.keras.backend as K
+from tensorflow.keras.models import load_model
+
 from PIL import Image
 from io import BytesIO
 
@@ -18,9 +29,23 @@ app.add_middleware(
         allow_headers=["*"]
 )
 
+K.clear_session()
+model_best = load_model(glob.glob('API/model/*.hdf5')[0],compile = False)
+print(model_best)
+
+# @app.post("/rate-image", tags=["Evaluate"])
+# async def rate_food_item(file: UploadFile = File(...)):
+#     image_bytes = await file.read()
+#     image = Image.open(BytesIO(image_bytes))
+#     width, height = image.size
+#     return {"width": width, "height": height}
+
 @app.post("/rate-image", tags=["Evaluate"])
 async def rate_food_item(file: UploadFile):
     image_bytes = await file.read()
-    image = Image.open(BytesIO(image_bytes))
-    width, height = image.size
-    return {"width": width, "height": height}
+    image = BytesIO(image_bytes)
+    food_name=predict_class(model_best,image, False)
+    foodname = re.sub(r'[^\w\s]','',food_name) #remove everything except words and space
+    foodname = re.sub(r'_','',foodname)
+    calories= calories_calculator(foodname)
+    return {"foodname": foodname,"calories":calories}
