@@ -13,5 +13,9 @@ def transformer_model_prediction(image):
     print(encoding.pixel_values.shape)
     with torch.no_grad():
         logits =model(**encoding).logits
+
+    probs = logits.softmax(dim=-1).detach().cpu().flatten().numpy().tolist()
+    prediction_prob=max(probs)
+
     predicted_label = logits.argmax(-1).item()
-    return model.config.id2label[predicted_label]
+    return model.config.id2label[predicted_label],prediction_prob

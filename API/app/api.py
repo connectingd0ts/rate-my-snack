@@ -34,8 +34,8 @@ async def rate_food_item(file: UploadFile, current_user: User = Depends(get_curr
     image_bytes = await file.read()
     image = BytesIO(image_bytes)
     image=Image.open(image)
-    food_name=transformer_model_prediction(image)
+    food_name, prediction_prob=transformer_model_prediction(image)
     foodname = re.sub(r'[^\w\s]','',food_name) #remove everything except words and space
     foodname = re.sub(r'_','',foodname)
     calories= calories_calculator(foodname)
-    return {"foodname": foodname,"calories":calories}
+    return {"foodname": foodname,"calories":calories,"prediction_prob":prediction_prob}
