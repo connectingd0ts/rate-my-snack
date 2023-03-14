@@ -167,4 +167,7 @@ poetry.toml
 # ruff
 .ruff_cache/
 # model directory
-model/
+my_model/
+
+## ML Model code and config file
+[a link](https://drive.google.com/drive/folders/1QbGVYD16K23wdO8gKATJ3nSnodMD8hW3?usp=share_link)

@@ -1,11 +1,8 @@
 import numpy as np
-import tensorflow as tf
 import matplotlib.pyplot as plt
 import matplotlib.image as img
 import pandas as pd
 from fuzzywuzzy import process
-from tensorflow.keras.applications.inception_v3 import preprocess_input
-from tensorflow.keras.preprocessing import image
 
 
 
@@ -27,17 +24,17 @@ food_list=['apple_pie', 'baby_back_ribs', 'baklava', 'beef_carpaccio', 'beef_tar
             'spring_rolls', 'steak', 'strawberry_shortcake', 'sushi', 'tacos', 'takoyaki', 'tiramisu', 
             'tuna_tartare', 'waffles']
 
-def predict_class(model, img, show=True):
-    img = image.load_img(img, target_size=(299, 299))
-    img = image.img_to_array(img)                    
-    img = np.expand_dims(img, axis=0)         
-    img = preprocess_input(img)                                      
+# def predict_class(model, img, show=True):
+#     img = image.load_img(img, target_size=(299, 299))
+#     img = image.img_to_array(img)                    
+#     img = np.expand_dims(img, axis=0)         
+#     img = preprocess_input(img)                                      
 
-    pred = model.predict(img)
-    index = np.argmax(pred)
-    food_list.sort()
-    pred_value = food_list[index]
-    return pred_value
+#     pred = model.predict(img)
+#     index = np.argmax(pred)
+#     food_list.sort()
+#     pred_value = food_list[index]
+#     return pred_value
 
 def calories_calculator(foodname):
     calories_data= pd.read_csv('inputs\Calories Data\Food and Calories data.csv')
