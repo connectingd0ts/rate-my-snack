@@ -5,7 +5,7 @@ Make sure you have python installed.\
 If not, install the latest version from https://www.python.org/downloads/
 
 The prediction model could not be uploaded to Github due to its size.\
-Download the model and config file from [Model](https://drive.google.com/drive/folders/1QbGVYD16K23wdO8gKATJ3nSnodMD8hW3?usp=share_link) \
+Download the model and config file from [Model Path](https://drive.google.com/drive/folders/1QbGVYD16K23wdO8gKATJ3nSnodMD8hW3?usp=share_link) \
 Create a folder named `model` inside `API` and paste it there.
 
 <b>Note:</b> You will need admin rights to install python and tensorflow on your machine.
